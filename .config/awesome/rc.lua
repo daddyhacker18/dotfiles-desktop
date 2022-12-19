@@ -98,12 +98,12 @@ end
 
 -- declare themes
 local themes = {
-    "cyberpunk", -- 1
-    "openSUSE", -- 2
+    "cyberpunk-green", -- 1
+    "cyberpunk-purple", -- 2
 }
 
 -- choose theme
-local chosen_theme = themes[1]
+local chosen_theme = themes[2]
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
 
@@ -509,8 +509,8 @@ globalkeys = awful.util.table.join(
               {description = "run dmenu", group = "launcher"}),
     -- browser
     awful.key({ modkey },            "b",     function ()
-              awful.util.spawn("firefox") end,
-              {description = "run firefox", group = "applications"}),
+              awful.util.spawn("brave-browser") end,
+              {description = "run brave", group = "applications"}),
 
     -- file manager
     awful.key({ modkey },            "e",    function ()
