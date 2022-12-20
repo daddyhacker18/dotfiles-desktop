@@ -17,14 +17,14 @@ theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
-theme.border_width  = 1
+theme.border_width  = 2
 theme.border_normal = "#000000"
 theme.border_focus  = "#535d6c"
 theme.border_marked = "#91231c"
 theme.titlebar_fg_normal = "#623eb0"
 
 -- set gaps
-theme.useless_gap = 6
+theme.useless_gap = 4
 
 -- There are other variable sets
 -- overriding the default one when
