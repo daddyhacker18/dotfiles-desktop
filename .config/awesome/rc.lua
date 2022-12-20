@@ -472,7 +472,7 @@ globalkeys = awful.util.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+    awful.key({ modkey, "Control"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
@@ -810,7 +810,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- autostart applications
 
 -- compositor
-awful.spawn.with_shell("picom")
+awful.spawn.with_shell("picom -b")
 
 -- set wallpaper
 awful.spawn.with_shell("feh --bg-fill /ntfs/tresorit/My Pictures/Wallpapers/UW/2022-07-29 - XdotcomNyc - 005.png")
