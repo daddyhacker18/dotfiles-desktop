@@ -232,9 +232,9 @@ vicious.register(myweatherwidget, vicious.widgets.weather,
           function (widget, args)
               weather_t:set_text("City: " .. args["{city}"] .."\nWind: " .. args["{windkmh}"] .. "km/h " .. args["{wind}"] .. "\nSky: " .. args["{sky}"] .. "\nHumidity: " .. args["{humid}"] .. "%")
               return args["{tempc}"] .. "C"
-          end, 1800, "EDDN")
+          end, 1800, "EGGW")
           --'1800': check every 30 minutes.
-          --'EDDN': Nuernberg ICAO code.
+          --'EGGW': Luton ICAO code.
 
 
 -- Keyboard map indicator and changer
