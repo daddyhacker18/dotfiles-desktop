@@ -687,6 +687,7 @@ awful.rules.rules = {
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
+                     round_corners = true,
                      raise = true,
                      keys = clientkeys,
                      buttons = clientbuttons,
@@ -741,6 +742,8 @@ client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
+
+    c.shape = gears.shape.rounded_rect
 
     if awesome.startup and
       not c.size_hints.user_position
