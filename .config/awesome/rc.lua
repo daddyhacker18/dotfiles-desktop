@@ -505,7 +505,7 @@ globalkeys = awful.util.table.join(
 
     -- dmenu
     awful.key({ modkey },            "r",     function ()
-              awful.util.spawn("dmenu_run") end,
+              awful.util.spawn("rofi -show combi") end,
               {description = "run dmenu", group = "launcher"}),
     -- browser
     awful.key({ modkey },            "b",     function ()
