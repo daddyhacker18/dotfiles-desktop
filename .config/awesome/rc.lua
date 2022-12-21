@@ -42,8 +42,11 @@ local freedesktop = require("freedesktop")
 -- Extra widgets
 local vicious = require("vicious")
 
+-- lain widgets and layouts
+local lain = require("lain")
+
 -- cpu widget
-local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+--local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 
 -- Deficient volume widget and control
 local volume_control = require("volume-control")
@@ -54,6 +57,13 @@ volumecfg = volume_control({
 	off = 'v: MUTE',
    },
 })
+
+-- objexts
+--local W = {}
+--clone_widget_set = W
+
+--local I = {}
+--clone_icon_set = I
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -124,22 +134,28 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
+--    awful.layout.suit.floating,
+--    awful.layout.suit.tile,
     awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
+--    awful.layout.suit.tile.bottom,
+--    awful.layout.suit.tile.top,
+--    awful.layout.suit.fair,
+--    awful.layout.suit.fair.horizontal,
+--    awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
+--    awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
+--    lain.layout.termfair,
+    lain.layout.termfair.center,
+--    lain.layout.cascade,
+--    lain.layout.cascade.tile,
+    lain.layout.centerwork,
+--    lain.layout.centerwork.horizontal,
 }
 -- }}}
 
@@ -210,8 +226,18 @@ separator:set_text("|")
 mytextclock = wibox.widget.textclock('%A %d %B | %H:%M ')
 -- calendar2.addCalendarToWidget(mytextclock, "<span color='green'>%s</span>")
 
-mycpuwidget = wibox.widget.textbox()
-vicious.register(mycpuwidget, vicious.widgets.cpu, "$1%")
+--mycpuwidget = wibox.widget.textbox()
+--vicious.register(mycpuwidget, vicious.widgets.cpu, "$1%")
+
+-- lain CPU widget
+--I.cpu = wibox.widget.imagebox()
+--I.cpu:set_image(beautiful.widget_cpu)
+
+--W.cpu = lain.widget.cpu({
+--    settings = function()
+--        widget:set_markup(markup(gmc.color['green900'], cpu_now.usage .. "% "))
+--    end
+--})
 
 mybattery = wibox.widget.textbox()
 vicious.register(mybattery, function(format, warg)
@@ -325,7 +351,8 @@ awful.screen.connect_for_each_screen(function(s)
     -- REPLACED -- awful.tag({ "main", "www", "term", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
     local names = { "{1} main ", "{2} www ", "{3} term ", "{4} files ", "{5} audio ", "6", "7", "8", "9" }
     local l = awful.layout.suit  -- Just to save some typing: use an alias.
-    local layouts = { l.tile.left, l.tile.left, l.tile.left, l.fair, l.max,
+    local la = lain.layout
+    local layouts = { la.centerwork, la.centerwork, la.centerwork, l.fair, l.max,
     	l.floating, l.tile.left, l.floating, l.floating }
     awful.tag(names, s, layouts)
 
@@ -349,13 +376,21 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({ position = "top", screen = s, opacity = 0.8 })
 
     -- Create a CPU widget
-    --cpuwidget = awful.widget.graph()
-    --cpuwidget:set_width(50)
-    --cpuwidget:set_background_color("#494B4F")
-    --cpuwidget:set_color("#FF5656")
-    --cpuwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })
-    --vicious.register(cpuwidget, vicious.widgets.cpu, "$1", 3)
+    local cpu = lain.widget.cpu {
+        settings = function()
+            widget:set_markup("c: " .. cpu_now.usage .. "%")
+        end
+    }
 
+    -- Create file system widget
+    -- shows used (percentage) and remaining space in home partition
+    local fsroothome = lain.widget.fs({
+        settings  = function()
+            widget:set_text("/home: " ..  fs_now["/home"].percentage .."%") 
+        end
+    })
+
+-- output example: "/home: 37% (239.4 Gb left)"
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -375,13 +410,12 @@ awful.screen.connect_for_each_screen(function(s)
             separator,
             spacer,
 
---            kbdcfg.widget,
---            spacer,
---            separator,
---            spacer,
+            fsroothome.widget,
+            spacer,
+            separator,
+            spacer,
 
---            mycpuwidget,
-	    cpu_widget(),
+	        cpu.widget,
             spacer,
             separator,
             spacer,
@@ -405,9 +439,9 @@ awful.screen.connect_for_each_screen(function(s)
 
             myweatherwidget,
             spacer,
---            separator,
---            spacer,
---            s.mylayoutbox,
+            separator,
+            spacer,
+            s.mylayoutbox,
         },
     }
 end)
