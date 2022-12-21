@@ -822,7 +822,7 @@ awful.spawn.with_shell("sh /home/giles/.screenlayout/main.sh")
 awful.spawn.with_shell("tresorit --hidden")
 
 -- start drop down terminal
-awful.spawn.with_shell("yakuake")
+-- awful.spawn.with_shell("yakuake")
 
 -- kill KDE global key bindings
 --awful.spawn.with_shell("pkill kglobalaccel")
