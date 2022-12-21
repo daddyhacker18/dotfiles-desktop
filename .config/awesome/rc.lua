@@ -457,6 +457,8 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+    awful.key({ modkey, "Control" }, "z", function () awful.util.spawn("xscreensaver-command -lock") end,
+              {description="lock and screensaver", group="system"}),
     awful.key({ modkey,           }, "F1",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -502,7 +504,7 @@ globalkeys = awful.util.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
@@ -854,6 +856,9 @@ awful.spawn.with_shell("sh /home/giles/.screenlayout/main.sh")
 
 -- start tresorit
 awful.spawn.with_shell("tresorit --hidden")
+
+-- start screensaver
+awful.spawn.with_shell("xscreensaver -no-splash")
 
 -- start drop down terminal
 -- awful.spawn.with_shell("yakuake")
