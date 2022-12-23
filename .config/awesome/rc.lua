@@ -550,7 +550,7 @@ globalkeys = awful.util.table.join(
 
     -- file manager
     awful.key({ modkey },            "e",    function ()
-	      awful.util.spawn("pcmanfm") end,
+	      awful.util.spawn("dolphin") end,
 	      {description = "run pcmanfm", group = "applications"}),
 
     -- Volume Keys
