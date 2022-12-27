@@ -1,0 +1,6 @@
+# set aliases
+alias ls='exa -lha'
+alias mv='mv -i'
+alias rm='rm -i'
+alias clear='clear && neofetch'
+# alias vim='nvim'
