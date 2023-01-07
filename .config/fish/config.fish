@@ -6,18 +6,25 @@ end
 export ZYPP_MEDIANETWORK=1 
 export QT_QPA_PLATFORMTHEME=qt5ct
 export HISTCONTROL=ignoreboth       # remove duplicates in command history
-fish_add_path path /home/giles/.config/emacs/bin/
+fish_add_path path /home/giles/.emacs.d/bin/			# add emacs/doom to path
 
 ### set aliases
 alias ls='exa -lha'                 # expand ls to include detail and color
-alias clear='clear && neofetch'     # show neofetch on clear console 
-alias mv='mv -i'                    # prompt on move
-alias rm='rm -i'                    # prompt on remove
+#alias clear='clear && neofetch'     # show neofetch on clear console 
+#alias mv='mv -i'                    # prompt on move
+#alias rm='rm -i'                    # prompt on remove
+alias rm='echo "This is not the command you were looking for."; false'
+alias rmdir='echo "This is not the command you were looking for."; false'
 alias backup='sh /ntfs/tresorit/My\ Scripts/backup2nas.sh'
+alias vim='nvim'			# neovim to replace vi
+alias yt-dlp-audio='yt-dlp -x --audio-format mp3'
+alias cryfs-open='cryfs /ntfs/tresorit/My\ Vault/CryFS ~/CryFS/'
+alias cryfs-close='cryfs-unmount "/home/giles/CryFS/"'
 
 ### starship prompt
-starship init fish | source
+# starship init fish | source
 
 ### display sysinfo
 # macchina
-neofetch
+#neofetch
+if test -f /home/giles/.autojump/share/autojump/autojump.fish; . /home/giles/.autojump/share/autojump/autojump.fish; end
