@@ -41,6 +41,10 @@ keys = [
              lazy.spawn(myFileManager),
              desc='Launches File Manager',
              ),
+         Key([mod], "F10",
+             lazy.spawn("locker.sh"),
+             desc='Locks screen'
+             ),
 
          ### media key controls
          Key([], "XF86AudioPlay", 
