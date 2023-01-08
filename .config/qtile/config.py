@@ -4,7 +4,7 @@ import re
 import socket
 import subprocess
 from libqtile import qtile
-from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.lazy import lazy
@@ -25,17 +25,21 @@ keys = [
              desc='Launches My Terminal'
              ),
          Key([mod, "shift"], "Return",
-             lazy.spawn("dm-run"),
+             lazy.spawn("dmenu_run"),
              desc='Run Launcher'
              ),
          Key([mod], "b",
              lazy.spawn(myBrowser),
              desc='Brave'
              ),
-         # Key([mod], "/",
-         #     lazy.spawn("dtos-help"),
-         #     desc='DTOS Help'
-         #     ),
+         Key([mod], "F12",
+             lazy.group["scratchpad"].dropdown_toggle("term"),
+             desc="toggle dropdown terminal",
+             ),
+#         Key([mod], "/",
+#              lazy.spawn("dmenu_run"),
+#              desc='Dmenu'
+#             ),
          Key([mod], "Tab",
              lazy.next_layout(),
              desc='Toggle through layouts'
@@ -145,109 +149,109 @@ keys = [
          Key([mod, "shift"], "space",
              lazy.layout.toggle_split(),
              desc='Toggle between split and unsplit sides of stack'
-             ),
+             )
          # Emacs programs launched using the key chord CTRL+e followed by 'key'
-         KeyChord([mod],"e", [
-             Key([], "e",
-                 lazy.spawn("emacsclient -c -a 'emacs'"),
-                 desc='Emacsclient Dashboard'
-                 ),
-             Key([], "a",
-                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/\")'"),
-                 desc='Emacsclient EMMS (music)'
-                 ),
-             Key([], "b",
-                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(ibuffer)'"),
-                 desc='Emacsclient Ibuffer'
-                 ),
-             Key([], "d",
-                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(dired nil)'"),
-                 desc='Emacsclient Dired'
-                 ),
-             Key([], "i",
-                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(erc)'"),
-                 desc='Emacsclient ERC (IRC)'
-                 ),
-             Key([], "n",
-                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(elfeed)'"),
-                 desc='Emacsclient Elfeed (RSS)'
-                 ),
-             Key([], "s",
-                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(eshell)'"),
-                 desc='Emacsclient Eshell'
-                 ),
-             Key([], "v",
-                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(+vterm/here nil)'"),
-                 desc='Emacsclient Vterm'
-                 ),
-             Key([], "w",
-                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(doom/window-maximize-buffer(eww \"distro.tube\"))'"),
-                 desc='Emacsclient EWW Browser'
-                 )
-         ]),
+#         KeyChord([mod],"e", [
+#             Key([], "e",
+#                 lazy.spawn("emacsclient -c -a 'emacs'"),
+#                 desc='Emacsclient Dashboard'
+#                 ),
+#             Key([], "a",
+#                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/\")'"),
+#                 desc='Emacsclient EMMS (music)'
+#                 ),
+#             Key([], "b",
+ #                lazy.spawn("emacsclient -c -a 'emacs' --eval '(ibuffer)'"),
+#                 desc='Emacsclient Ibuffer'
+#                 ),
+#             Key([], "d",
+#                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(dired nil)'"),
+#                 desc='Emacsclient Dired'
+#                 ),
+#             Key([], "i",
+#                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(erc)'"),
+#                 desc='Emacsclient ERC (IRC)'
+#                 ),
+#             Key([], "n",
+#                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(elfeed)'"),
+#                 desc='Emacsclient Elfeed (RSS)'
+#                 ),
+#             Key([], "s",
+#                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(eshell)'"),
+#                 desc='Emacsclient Eshell'
+#                 ),
+#             Key([], "v",
+#                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(+vterm/here nil)'"),
+#                 desc='Emacsclient Vterm'
+#                 ),
+#             Key([], "w",
+#                 lazy.spawn("emacsclient -c -a 'emacs' --eval '(doom/window-maximize-buffer(eww \"distro.tube\"))'"),
+#                 desc='Emacsclient EWW Browser'
+#                 )
+#         ]),
          # Dmenu scripts launched using the key chord SUPER+p followed by 'key'
-         KeyChord([mod], "p", [
-             Key([], "h",
-                 lazy.spawn("dm-hub"),
-                 desc='List all dmscripts'
-                 ),
-             Key([], "a",
-                 lazy.spawn("dm-sounds"),
-                 desc='Choose ambient sound'
-                 ),
-             Key([], "b",
-                 lazy.spawn("dm-setbg"),
-                 desc='Set background'
-                 ),
-             Key([], "c",
-                 lazy.spawn("dtos-colorscheme"),
-                 desc='Choose color scheme'
-                 ),
-             Key([], "e",
-                 lazy.spawn("dm-confedit"),
-                 desc='Choose a config file to edit'
-                 ),
-             Key([], "i",
-                 lazy.spawn("dm-maim"),
-                 desc='Take a screenshot'
-                 ),
-             Key([], "k",
-                 lazy.spawn("dm-kill"),
-                 desc='Kill processes '
-                 ),
-             Key([], "m",
-                 lazy.spawn("dm-man"),
-                 desc='View manpages'
-                 ),
-             Key([], "n",
-                 lazy.spawn("dm-note"),
-                 desc='Store and copy notes'
-                 ),
-             Key([], "o",
-                 lazy.spawn("dm-bookman"),
-                 desc='Browser bookmarks'
-                 ),
-             Key([], "p",
-                 lazy.spawn("passmenu -p \"Pass: \""),
-                 desc='Logout menu'
-                 ),
-             Key([], "q",
-                 lazy.spawn("dm-logout"),
-                 desc='Logout menu'
-                 ),
-             Key([], "r",
-                 lazy.spawn("dm-radio"),
-                 desc='Listen to online radio'
-                 ),
-             Key([], "s",
-                 lazy.spawn("dm-websearch"),
-                 desc='Search various engines'
-                 ),
-             Key([], "t",
-                 lazy.spawn("dm-translate"),
-                 desc='Translate text'
-                 )
-         ])
+#         KeyChord([mod], "p", [
+#             Key([], "h",
+#                 lazy.spawn("dm-hub"),
+#                 desc='List all dmscripts'
+#                 ),
+#             Key([], "a",
+#                 lazy.spawn("dm-sounds"),
+#                 desc='Choose ambient sound'
+#                 ),
+#             Key([], "b",
+#                 lazy.spawn("dm-setbg"),
+#                 desc='Set background'
+#                 ),
+#             Key([], "c",
+#                 lazy.spawn("dtos-colorscheme"),
+#                 desc='Choose color scheme'
+#                 ),
+#             Key([], "e",
+#                 lazy.spawn("dm-confedit"),
+#                 desc='Choose a config file to edit'
+#                 ),
+#             Key([], "i",
+#                 lazy.spawn("dm-maim"),
+#                 desc='Take a screenshot'
+#                 ),
+#             Key([], "k",
+#                 lazy.spawn("dm-kill"),
+#                 desc='Kill processes '
+#                 ),
+#             Key([], "m",
+#                 lazy.spawn("dm-man"),
+#                 desc='View manpages'
+#                 ),
+#             Key([], "n",
+#                 lazy.spawn("dm-note"),
+#                 desc='Store and copy notes'
+#                 ),
+#             Key([], "o",
+#                 lazy.spawn("dm-bookman"),
+#                 desc='Browser bookmarks'
+#                 ),
+#             Key([], "p",
+#                 lazy.spawn("passmenu -p \"Pass: \""),
+#                 desc='Logout menu'
+#                 ),
+#             Key([], "q",
+#                 lazy.spawn("dm-logout"),
+#                 desc='Logout menu'
+#                 ),
+#             Key([], "r",
+#                 lazy.spawn("dm-radio"),
+#                 desc='Listen to online radio'
+#                 ),
+#             Key([], "s",
+#                 lazy.spawn("dm-websearch"),
+#                 desc='Search various engines'
+#                 ),
+#             Key([], "t",
+#                 lazy.spawn("dm-translate"),
+#                 desc='Translate text'
+#                 )
+#         ])
 ]
 
 groups = [Group("MAIN", layout='monadthreecol'),
@@ -260,6 +264,13 @@ groups = [Group("MAIN", layout='monadthreecol'),
           Group("8", layout='monadthreecol'),
           Group("9", layout='monadthreecol'),
           Group("0", layout='floating')]
+
+groups.append(
+        ScratchPad("scratchpad", [
+            # define a dropdown terminal
+            DropDown("term", myTerm, opacity=0.8, height=0.5, width=0.8),
+            ]),
+)
 
 # Allow MODKEY+[0 through 9] to bind to groups, see https://docs.qtile.org/en/stable/manual/config/groups.html
 # MOD4 + index Number : Switch to Group[index]
