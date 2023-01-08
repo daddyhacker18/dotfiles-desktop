@@ -41,6 +41,23 @@ keys = [
              lazy.spawn(myFileManager),
              desc='Launches File Manager',
              ),
+
+         ### media key controls
+         Key([], "XF86AudioPlay", 
+             lazy.spawn("playerctl play-pause"), 
+             desc="Play/Pause player",
+             ),
+
+         Key([], "XF86AudioNext", 
+             lazy.spawn("playerctl next"), 
+             desc="Skip to next",
+             ),
+
+         Key([], "XF86AudioPrev", 
+             lazy.spawn("playerctl previous"), 
+             desc="Skip to previous",
+             ),
+
          #         Key([mod], "/",
 #              lazy.spawn("dmenu_run"),
 #              desc='Dmenu'

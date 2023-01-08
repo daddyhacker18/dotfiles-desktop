@@ -9,6 +9,7 @@ conky -c $HOME/.config/conky/qtile/doom-one-01.conkyrc
 volumeicon &
 nm-applet &
 setxkbmap gb &
+tresorit-daemon &
 
 ### UNCOMMENT ONLY ONE OF THE FOLLOWING THREE OPTIONS! ###
 # 1. Uncomment to restore last saved wallpaper
