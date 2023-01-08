@@ -17,6 +17,7 @@ from qtile_extras.widget.decorations import BorderDecoration
 mod = "mod4"              # Sets mod key to SUPER/WINDOWS
 myTerm = "kitty"      # My terminal of choice
 myBrowser = "brave-browser" # My browser of choice
+myFileManager = "nautilus"
 
 keys = [
          ### The essentials
@@ -28,15 +29,19 @@ keys = [
              lazy.spawn("dmenu_run"),
              desc='Run Launcher'
              ),
-         Key([mod], "b",
+         Key([mod], "F1",
              lazy.spawn(myBrowser),
-             desc='Brave'
+             desc='Launches web browser'
              ),
          Key([mod], "F12",
              lazy.group["scratchpad"].dropdown_toggle("term"),
-             desc="toggle dropdown terminal",
+             desc='toggle dropdown terminal',
              ),
-#         Key([mod], "/",
+         Key([mod], "F2",
+             lazy.spawn(myFileManager),
+             desc='Launches File Manager',
+             ),
+         #         Key([mod], "/",
 #              lazy.spawn("dmenu_run"),
 #              desc='Dmenu'
 #             ),
@@ -44,7 +49,7 @@ keys = [
              lazy.next_layout(),
              desc='Toggle through layouts'
              ),
-         Key([mod, "shift"], "c",
+         Key([mod], "q",
              lazy.window.kill(),
              desc='Kill active window'
              ),
@@ -259,7 +264,7 @@ groups = [Group("MAIN", layout='monadthreecol'),
           Group("TERM", layout='monadthreecol'),
           Group("FILES", layout='monadthreecol'),
           Group("MUS", layout='monadthreecol'),
-          Group("6", layout='monadthreecol'),
+          Group("GAMES", layout='monadthreecol'),
           Group("7", layout='monadthreecol'),
           Group("8", layout='monadthreecol'),
           Group("9", layout='monadthreecol'),
