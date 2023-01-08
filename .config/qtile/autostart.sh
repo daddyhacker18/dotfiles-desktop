@@ -19,3 +19,4 @@ tresorit-daemon &
 # 3. Uncomment to set wallpaper with nitrogen
 nitrogen --restore &
 nightlight &
+xscreensaver --no-splash &
