@@ -1,11 +1,12 @@
-#!/usr/bin/env bash 
+#!/bin/sh 
 
-festival --tts $HOME/.config/qtile/welcome_msg &
+# festival --tts $HOME/.config/qtile/welcome_msg &
 # lxsession &
 picom &
 $HOME/.screenlayout/main.sh &
-/usr/bin/emacs --daemon &
-conky -c $HOME/.config/conky/qtile/doom-one-01.conkyrc
+# /usr/bin/emacs --daemon &
+conky -c $HOME/.config/conky/qtile/doom-one-01.conkyrc &
+
 volumeicon &
 nm-applet &
 setxkbmap gb &

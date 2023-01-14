@@ -19,6 +19,9 @@ myTerm = "kitty"                # My terminal of choice
 myBrowser = "brave-browser"     # My browser of choice
 myFileManager = "nautilus"      # My file manager of choice
 
+#def lock_screen():
+#    subprocess.run(['xscreensaver-command', '-lock'])
+
 keys = [
          ### The essentials
          Key([mod], "F12",
@@ -42,8 +45,13 @@ keys = [
              desc='Launches File Manager',
              ),
          Key([mod], "F10",
-             lazy.spawn("locker.sh"),
-             desc='Locks screen'
+             lazy.spawn("xscreensaver-command -lock"),
+             desc='Locks screen',
+             ),
+
+         Key([mod, "shift"], "F10",
+             lazy.spawn("systemctl suspend"),
+             desc="Suspends system",
              ),
 
          ### media key controls
@@ -360,6 +368,10 @@ colors = [["#282c34", "#282c34"],
           ["#a9a1e1", "#a9a1e1"]]
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+
+##### function to lock screen #####
+#def lock_screen():
+#    subprocess.run(["xscreensaver-command", "-lock"])
 
 ##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
