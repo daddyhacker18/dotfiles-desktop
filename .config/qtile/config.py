@@ -14,14 +14,14 @@ from typing import List  # noqa: F401
 from qtile_extras import widget
 from qtile_extras.widget.decorations import BorderDecoration
 
-mod = "mod4"              # Sets mod key to SUPER/WINDOWS
-myTerm = "kitty"      # My terminal of choice
-myBrowser = "brave-browser" # My browser of choice
-myFileManager = "nautilus"
+mod = "mod4"                    # Sets mod key to SUPER/WINDOWS
+myTerm = "kitty"                # My terminal of choice
+myBrowser = "brave-browser"     # My browser of choice
+myFileManager = "nautilus"      # My file manager of choice
 
 keys = [
          ### The essentials
-         Key([mod], "Return",
+         Key([mod], "F12",
              lazy.spawn(myTerm),
              desc='Launches My Terminal'
              ),
@@ -33,7 +33,7 @@ keys = [
              lazy.spawn(myBrowser),
              desc='Launches web browser'
              ),
-         Key([mod], "F12",
+         Key([mod, "shift"], "F12",
              lazy.group["scratchpad"].dropdown_toggle("term"),
              desc='toggle dropdown terminal',
              ),
