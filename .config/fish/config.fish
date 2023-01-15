@@ -10,7 +10,7 @@ export CM_LAUNCHER=rofi												# set clipmenud launcher to be rofi
 
 ### set path variables
 fish_add_path path /home/giles/.emacs.d/bin/	# add emacs/doom to path
-
+fish_add_path path /home/giles/scripts/				# add my own scripting directory to path
 
 ### set aliases
 alias ls='exa -lha'                 # expand ls to include detail and color
