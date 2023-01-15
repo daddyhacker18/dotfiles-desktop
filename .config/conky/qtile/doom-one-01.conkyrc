@@ -105,7 +105,7 @@ ${color1}${hr}${color}
 ${color1}[S]+q${alignr}${color2}close window${color}
 ${color1}[S]+[RET]${alignr}${color2}launcher${color}
 ${color1}[S]+[F10]${alignr}${color2}lock screen${color}
-${color1}[S]+[SHIFT]+[F10]${alignr}${color2}suspend${color}
+${color1}[S]+[SHIFT]+[F10]${alignr}${color2}power menu${color}
 ${color1}[S]+[F11]${alignr}${color2}clipboard${color}
 ${color1}${hr}${color}
 ${color1}[S]+[F1]${alignr}${color2}open browser${color}
