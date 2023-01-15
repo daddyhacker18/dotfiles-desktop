@@ -1,16 +1,20 @@
-/dev/system/root  		/			btrfs	defaults                      	0  0
-/dev/system/root  		/var			btrfs	subvol=/@/var                 	0  0
-/dev/system/root  		/usr/local              btrfs	subvol=/@/usr/local           	0  0
-/dev/system/root  		/srv                    btrfs	subvol=/@/srv                 	0  0
-/dev/system/root  		/root                   btrfs	subvol=/@/root                	0  0
-/dev/system/root  		/opt                    btrfs	subvol=/@/opt                 	0  0
-/dev/system/home  		/home                   btrfs	defaults                      	0  0
-/dev/system/root  		/boot/grub2/x86_64-efi  btrfs	subvol=/@/boot/grub2/x86_64-efi 0  0
-/dev/system/root  		/boot/grub2/i386-pc     btrfs	subvol=/@/boot/grub2/i386-pc  	0  0
-UUID=242C-40FE    		/boot/efi               vfat	utf8                          	0  2
-/dev/system/swap  		swap                    swap	defaults                      	0  0
-/dev/system/root		/.snapshots             btrfs	subvol=/@/.snapshots          	0  0
-UUID=39B06632C7806339		/ntfs/tresorit		ntfs-3g	defaults		       	0  0
-UUID=34BA78A0BA786072		/ntfs/games	  	ntfs-3g	defaults		       	0  0
-# //192.168.1.185/Backup	/nas/backup 	  	cifs	noauto,users,_netdev,credentials=/home/giles/.nascredentials,iocharset=utf8,uid=1000,gid=1000,file_mode=0774,dir_mode=0775 0 0
-192.168.1.185:/volume1/Backup	/nas/backup		nfs	rw,noauto,user,nofail		0 0
+
+#
+# /etc/fstab
+# Created by anaconda on Mon Jan  2 12:28:14 2023
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+UUID=11207718-6863-413d-b4c4-a31c602381d7 	/                       btrfs   subvol=root,compress=zstd:1 	0  0
+UUID=80c92245-097d-409b-8eeb-49efef2f4495 	/boot                   ext4    defaults        		1  2
+UUID=9EBE-2BAC          			/boot/efi               vfat    umask=0077,shortname=winnt 	0  2
+UUID=11207718-6863-413d-b4c4-a31c602381d7 	/home                   btrfs   subvol=home,compress=zstd:1 	0  0
+192.168.1.185:/volume1/Backup			/nas/backup		nfs	rw,noauto,user,nofail		0  0
+192.168.1.185:/volume1/Archive			/nas/archive		nfs	rw,noauto,user,nofail		0  0
+UUID=39B06632C7806339				/ntfs/tresorit		ntfs-3g	defaults		       	0  0
+UUID=34BA78A0BA786072				/ntfs/games	  	ntfs-3g	defaults		       	0  0
+192.168.1.185:/volume1/Downloads		/nas/downloads		nfs	rw,noauto,user,nofail		0  0	
