@@ -28,7 +28,7 @@ keys = [
              lazy.spawn(myTerm),
              desc='Launches My Terminal'
              ),
-         Key([mod, "shift"], "Return",
+         Key([mod], "Return",
              lazy.spawn("rofi -show run"),
              desc='Run Launcher'
              ),
