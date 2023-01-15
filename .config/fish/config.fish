@@ -4,9 +4,13 @@ end
 
 ### set environment variables
 export ZYPP_MEDIANETWORK=1 
-export QT_QPA_PLATFORMTHEME=qt5ct
-export HISTCONTROL=ignoreboth       # remove duplicates in command history
-fish_add_path path /home/giles/.emacs.d/bin/			# add emacs/doom to path
+export QT_QPA_PLATFORMTHEME=qt5ct							# set QT platform to be qt5
+export HISTCONTROL=ignoreboth       					# remove duplicates in command history
+export CM_LAUNCHER=rofi												# set clipmenud launcher to be rofi
+
+### set path variables
+fish_add_path path /home/giles/.emacs.d/bin/	# add emacs/doom to path
+
 
 ### set aliases
 alias ls='exa -lha'                 # expand ls to include detail and color

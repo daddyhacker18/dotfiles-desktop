@@ -5,9 +5,9 @@
 picom &
 $HOME/.screenlayout/main.sh &
 # /usr/bin/emacs --daemon &
+sleep 5 &
 conky -c $HOME/.config/conky/qtile/doom-one-01.conkyrc &
 
-volumeicon &
 nm-applet &
 setxkbmap gb &
 tresorit-daemon &
@@ -19,5 +19,7 @@ tresorit-daemon &
 # find /usr/share/backgrounds/dtos-backgrounds/ -type f | shuf -n 1 | xargs xwallpaper --stretch &
 # 3. Uncomment to set wallpaper with nitrogen
 nitrogen --restore &
-nightlight &
+# nightlight.sh &
 xscreensaver --no-splash &
+# this deamon captures clipboard events for use in clipmenu
+clipmenud &

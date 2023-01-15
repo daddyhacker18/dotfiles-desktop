@@ -29,7 +29,7 @@ keys = [
              desc='Launches My Terminal'
              ),
          Key([mod, "shift"], "Return",
-             lazy.spawn("dmenu_run"),
+             lazy.spawn("rofi -show run"),
              desc='Run Launcher'
              ),
          Key([mod], "F1",
@@ -47,6 +47,10 @@ keys = [
          Key([mod], "F10",
              lazy.spawn("xscreensaver-command -lock"),
              desc='Locks screen',
+             ),
+         Key([mod], "F11",
+             lazy.spawn("clipmenu"),
+             desc='Show clipboard history',
              ),
 
          Key([mod, "shift"], "F10",
@@ -69,6 +73,20 @@ keys = [
              lazy.spawn("playerctl previous"), 
              desc="Skip to previous",
              ),
+
+         Key([], "XF86AudioRaiseVolume",
+             lazy.spawn("amixer sset Master 5%+"),
+             desc="increase volume by 5%"
+             ),
+         Key([], "XF86AudioLowerVolume",
+             lazy.spawn("amixer sset Master 5%-"),
+             desc="Decrease volume by 5%"
+             ),
+         Key([], "XF86AudioMute",
+             lazy.spawn("amixer sset Master toggle"),
+             desc="Toggle audio"
+             ),
+
 
          #         Key([mod], "/",
 #              lazy.spawn("dmenu_run"),
@@ -184,7 +202,8 @@ keys = [
              lazy.layout.toggle_split(),
              desc='Toggle between split and unsplit sides of stack'
              )
-         # Emacs programs launched using the key chord CTRL+e followed by 'key'
+
+# Emacs programs launched using the key chord CTRL+e followed by 'key'
 #         KeyChord([mod],"e", [
 #             Key([], "e",
 #                 lazy.spawn("emacsclient -c -a 'emacs'"),
@@ -320,7 +339,7 @@ layout_theme = {"border_width": 2,
 
 layouts = [
     #layout.MonadWide(**layout_theme),
-    #layout.Bsp(**layout_theme),
+    layout.Bsp(**layout_theme),
     #layout.Stack(stacks=2, **layout_theme),
     #layout.Columns(**layout_theme),
     #layout.RatioTile(**layout_theme),
