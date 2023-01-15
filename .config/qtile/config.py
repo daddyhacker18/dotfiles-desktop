@@ -334,6 +334,7 @@ dgroups_key_binder = simple_key_binder("mod4")
 layout_theme = {"border_width": 2,
                 "margin": 8,
                 "border_focus": "e1acff",
+                "ratio": 0.58,
                 "border_normal": "1D2330"
                 }
 
