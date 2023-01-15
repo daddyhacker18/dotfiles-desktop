@@ -54,7 +54,7 @@ keys = [
              ),
 
          Key([mod, "shift"], "F10",
-             lazy.spawn("systemctl suspend"),
+             lazy.spawn("rofi -show power-menu -modi power-menu:~/.config/rofi/scripts/rofi-power-menu"),
              desc="Suspends system",
              ),
 
