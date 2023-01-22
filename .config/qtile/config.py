@@ -16,7 +16,7 @@ from qtile_extras.widget.decorations import BorderDecoration
 
 mod = "mod4"                    # Sets mod key to SUPER/WINDOWS
 myTerm = "kitty"                # My terminal of choice
-myBrowser = "brave-browser"     # My browser of choice
+myBrowser = "brave"             # My browser of choice
 myFileManager = "nautilus"      # My file manager of choice
 
 #def lock_screen():
