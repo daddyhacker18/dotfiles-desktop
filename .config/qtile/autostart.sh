@@ -4,13 +4,14 @@
 # lxsession &
 picom &
 $HOME/.screenlayout/main.sh &
-# /usr/bin/emacs --daemon &
+/usr/bin/emacs --daemon &
 sleep 5 &
 conky -c $HOME/.config/conky/qtile/doom-one-01.conkyrc &
 
 nm-applet &
 setxkbmap gb &
 tresorit-daemon &
+syncthing &
 
 ### UNCOMMENT ONLY ONE OF THE FOLLOWING THREE OPTIONS! ###
 # 1. Uncomment to restore last saved wallpaper
