@@ -307,7 +307,7 @@ keys = [
 #         ])
 ]
 
-groups = [Group("Main", layout='monadthreecol'),
+groups = [Group("main", layout='monadthreecol'),
           Group("www", layout='monadthreecol'),
           Group("term", layout='monadthreecol'),
           Group("mus", layout='monadthreecol'),
