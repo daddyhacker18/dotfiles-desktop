@@ -307,12 +307,12 @@ keys = [
 #         ])
 ]
 
-groups = [Group("MAIN", layout='monadthreecol'),
-          Group("WWW", layout='monadthreecol'),
-          Group("TERM", layout='monadthreecol'),
-          Group("FILES", layout='monadthreecol'),
-          Group("MUS", layout='monadthreecol'),
-          Group("GAMES", layout='monadthreecol'),
+groups = [Group("Main", layout='monadthreecol'),
+          Group("www", layout='monadthreecol'),
+          Group("term", layout='monadthreecol'),
+          Group("mus", layout='monadthreecol'),
+          Group("files", layout='monadthreecol'),
+          Group("6", layout='monadthreecol'),
           Group("7", layout='monadthreecol'),
           Group("8", layout='monadthreecol'),
           Group("9", layout='monadthreecol'),
@@ -354,7 +354,7 @@ layouts = [
     layout.Stack(num_stacks=2),
     layout.RatioTile(**layout_theme),
     layout.TreeTab(
-         font = "Ubuntu",
+         font = "TerminessTTF Nerd Font Bold",
          fontsize = 10,
          sections = ["FIRST", "SECOND", "THIRD", "FOURTH"],
          section_fontsize = 10,
@@ -395,9 +395,9 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 ##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
-    font="Ubuntu Bold",
-    fontsize = 14,
-    padding = 2,
+    font="TerminessTTF Nerd Font Bold",
+    fontsize = 15,
+    padding = 4,
     background=colors[2]
 )
 extension_defaults = widget_defaults.copy()
@@ -422,8 +422,9 @@ def init_widgets_list():
                        background = colors[0]
                        ),
               widget.GroupBox(
-                       font = "Ubuntu Bold",
-                       fontsize = 14,
+                       font = "TerminessTTF Nerd Font",
+                       # fmt = "bold",
+                       fontsize = 15,
                        margin_y = 3,
                        margin_x = 0,
                        padding_y = 5,
@@ -431,19 +432,19 @@ def init_widgets_list():
                        borderwidth = 3,
                        active = colors[2],
                        inactive = colors[7],
-                       rounded = False,
+                       rounded = True,
                        highlight_color = colors[1],
                        highlight_method = "line",
-                       this_current_screen_border = colors[6],
-                       this_screen_border = colors [4],
-                       other_current_screen_border = colors[6],
-                       other_screen_border = colors[4],
+                       this_current_screen_border = colors[8],
+                       this_screen_border = colors [6],
+                       other_current_screen_border = colors[8],
+                       other_screen_border = colors[6],
                        foreground = colors[2],
                        background = colors[0]
                        ),
              widget.TextBox(
                        text = '|',
-                       font = "Ubuntu Mono",
+                       font = "TerminessTTF Nerd Font Bold",
                        background = colors[0],
                        foreground = '474747',
                        padding = 2,
@@ -463,7 +464,7 @@ def init_widgets_list():
                        ),
              widget.TextBox(
                        text = '|',
-                       font = "Ubuntu Mono",
+                       font = "TerminessTTF Nerd Font Bold",
                        background = colors[0],
                        foreground = '474747',
                        padding = 2,
@@ -474,6 +475,26 @@ def init_widgets_list():
                        background = colors[0],
                        padding = 0
                        ),
+              widget.Spacer(
+                      foreground = colors[6],
+                      background = colors[0],
+                      ),
+              widget.Clock(
+                       foreground = colors[6],
+                       background = colors[0],
+                       padding = 0,
+                       format = "%A %d %B %H:%M ",
+                        ),
+              widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[0],
+                       background = colors[0]
+                       ),
+              widget.Spacer(
+                        foreground = colors[6],
+                        background = colors[0],
+                      ),
               widget.Systray(
                        background = colors[0],
                        padding = 5
@@ -484,20 +505,59 @@ def init_widgets_list():
                        foreground = colors[0],
                        background = colors[0]
                        ),
-             widget.Net(
+             widget.CheckUpdates(
+                     distro = 'Fedora',
+                     foregraound = colors[1],
+                     background = colors[0],
+                     padding = 5,
+                     ),
+             widget.Sep(
+                        linewidth = 0,
+                        padding = 6,
+                        foreground = colors[0],
+                        background = colors[0],
+                        ),
+            widget.DF(
+                        foreground = colors[3],
+                        background = colors[0],
+                        padding = 5,
+                        visible_on_warn = False,
+                        format = "{uf}{m}|{r:.0f}%",
+                        fmt = "Disk: {}",
+                        ),
+            widget.Sep(
+                        linewidth = 0,
+                        padding = 6,
+                        foreground = colors[0],
+                        background = colors[0],
+                        ),
+            widget.Load(
+                    foreground = colors[4],
+                    background = colors[0],
+                    padding = 5,
+                    fmt = "Load: {}",
+                    format = "{load:.2f}",
+                    ),
+            widget.Sep(
+                        linewidth = 0,
+                        padding = 6,
+                        foreground = colors[0],
+                        background = colors[0],
+                        ),
+            widget.Net(
                        interface = "enp6s0",
                        format = 'Net: {down} ↓↑ {up}',
-                       foreground = colors[3],
+                       foreground = colors[5],
                        background = colors[0],
                        padding = 5,
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[3],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
+  #                    decorations=[
+  #                        BorderDecoration(
+  #                            colour = colors[3],
+  #                            border_width = [0, 0, 2, 0],
+   #                           padding_x = 5,
+   #                           padding_y = None,
+   #                       )
+   #                    ],
                        ),
               widget.Sep(
                        linewidth = 0,
@@ -506,19 +566,19 @@ def init_widgets_list():
                        background = colors[0]
                        ),
               widget.ThermalSensor(
-                       foreground = colors[4],
+                       foreground = colors[6],
                        background = colors[0],
                        threshold = 90,
                        fmt = 'Temp: {}',
                        padding = 5,
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[4],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
+  #                    decorations=[
+ #                         BorderDecoration(
+ #                             colour = colors[4],
+ #                             border_width = [0, 0, 2, 0],
+ #                             padding_x = 5,
+ #                             padding_y = None,
+ #                         )
+ #                      ],
                        ),
               widget.Sep(
                        linewidth = 0,
@@ -526,45 +586,21 @@ def init_widgets_list():
                        foreground = colors[0],
                        background = colors[0]
                        ),
-              widget.CheckUpdates(
-                       update_interval = 1800,
-                       distro = "Arch_checkupdates",
-                       display_format = "Updates: {updates} ",
-                       foreground = colors[5],
-                       colour_have_updates = colors[5],
-                       colour_no_updates = colors[5],
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
-                       padding = 5,
-                       background = colors[0],
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[5],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
-                       ),
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 6,
-                       foreground = colors[0],
-                       background = colors[0]
-                       ),
-              widget.Memory(
-                       foreground = colors[9],
+             widget.Memory(
+                       foreground = colors[7],
                        background = colors[0],
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
-                       fmt = 'Mem: {}',
+                       measure_mem = "G",
+                       format = "Mem:{MemUsed: .1f}G/{MemTotal: .1f}G",
                        padding = 5,
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[9],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
+#                      decorations=[
+#                          BorderDecoration(
+#                              colour = colors[9],
+#                              border_width = [0, 0, 2, 0],
+#                              padding_x = 5,
+#                              padding_y = None,
+#                          )
+#                       ],
                        ),
               widget.Sep(
                        linewidth = 0,
@@ -574,18 +610,18 @@ def init_widgets_list():
                        ),
 
               widget.Volume(
-                       foreground = colors[7],
+                       foreground = colors[8],
                        background = colors[0],
                        fmt = 'Vol: {}',
                        padding = 5,
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[7],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
+#                       decorations=[
+#                           BorderDecoration(
+#                               colour = colors[7],
+#                               border_width = [0, 0, 2, 0],
+#                               padding_x = 5,
+#                               padding_y = None,
+#                           )
+#                       ],
                        ),
               widget.Sep(
                        linewidth = 0,
@@ -594,64 +630,12 @@ def init_widgets_list():
                        background = colors[0]
                        ),
 
-
-              widget.KeyboardLayout(
-                       foreground = colors[8],
-                       background = colors[0],
-                       configured_keyboards = ['gb'],
-                       option = 'gb',
-                       fmt = 'Keyboard: {}',
-                       padding = 5,
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[8],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
-                       ),
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 6,
-                       foreground = colors[0],
-                       background = colors[0]
-                       ),
-              widget.AnalogueClock(
-                       background = colors[0],
-                       face_shape = "square",
-                       face_background = colors[6],
-                       face_border_colour = colors[6],
-                       face_border_width = 4,
-                       padding = 5
-                       ),
-              widget.Clock(
-                       foreground = colors[6],
-                       background = colors[0],
-                       format = "%A %d %B   %H:%M ",
-                       decorations=[
-                           BorderDecoration(
-                               colour = colors[6],
-                               border_width = [0, 0, 2, 0],
-                               padding_x = 5,
-                               padding_y = None,
-                           )
-                       ],
-
-                       ),
-
-              widget.Sep(
-                       linewidth = 0,
-                       padding = 6,
-                       foreground = colors[0],
-                       background = colors[0]
-                       ),
               ]
     return widgets_list
 
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
-    del widgets_screen1[9:10]               # Slicing removes unwanted widgets (systray) on Monitors 1,3
+    del widgets_screen1[13:14]               # Slicing removes unwanted widgets (systray) on Monitors 1,3
     return widgets_screen1
 
 def init_widgets_screen2():
