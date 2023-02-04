@@ -7,7 +7,7 @@ from modules.keys import terminal
 import os
 
 # define variables
-myTerm = "Kitty"
+myTerm = "kitty";
 
 colors = [["#282c34", "#282c34"],
           ["#1c1f24", "#1c1f24"],
@@ -58,6 +58,20 @@ screens = [
                     ),
                 widget.Prompt(),
                 widget.Spacer(background=colors[0],length=5),
+                widget.CurrentLayout(
+                    foreground='#ffffff',
+                    background=colors[0],
+                    font = "TerminessTTF Nerd Font Bold",
+                    fontsize=18
+                    ),
+                widget.TextBox(
+                    text = '|',
+                    font = "TerminessTTF Nerd Font Bold",
+                    background = colors[0],
+                    foreground = colors[10],
+                    padding = 2,
+                    fontsize=18
+                    ),
                 widget.WindowName(
                     font="TerminessTTF Nerd Font Bold",
                     fontsize=18,
@@ -96,14 +110,8 @@ screens = [
                 widget.Systray(
                     icon_size = 20,
                     background=colors[0],
+                    foreground=colors[1],
                     ),
-                widget.TextBox(
-                       text = '',
-                       padding = 0,
-                       fontsize = 28,
-                       foreground=colors[0],
-                       background=colors[0]
-                       ),
                 widget.Load(
                     format = "{load:.2f}",
                     background = colors[0],
@@ -114,7 +122,7 @@ screens = [
                     padding=5,
                 ),
                 widget.ThermalSensor(
-                    foreground = colors[4],
+                    foreground = colors[5],
                     background = colors[0],
                     font="TerminessTTF Nerd Font Bold",
                     fontsize=18,
@@ -123,7 +131,7 @@ screens = [
                     padding = 5,
                 ),
                 widget.Memory(
-                    foreground = colors[4],
+                    foreground = colors[6],
                     background = colors[0],
                     font="TerminessTTF Nerd Font Bold",
                     fontsize=18,
@@ -134,7 +142,7 @@ screens = [
                     padding = 5,
                 ),
                 widget.DF(
-                    foreground = colors[4],
+                    foreground = colors[7],
                     background = colors[0],
                     fontsize=18,
                     font="TerminessTTF Nerd Font Bold",
@@ -144,7 +152,7 @@ screens = [
                     fmt = "dsk: {}",
                 ),
                 widget.TextBox(
-                    text = ' | ',
+                    text = '|',
                     font = "TerminessTTF Nerd Font Bold",
                     background = colors[0],
                     foreground = colors[10],
@@ -152,16 +160,11 @@ screens = [
                     fontsize=18
                     ),
                 widget.Prompt(),
-                widget.Spacer(background=colors[0],length=5),
                 volume,
-                widget.CurrentLayoutIcon(
-                    scale=0.75,
-                    background=colors[0],
-                    foreground=colors[7]
-                    ),
+                widget.Spacer(background=colors[0], length=5),
                 widget.TextBox(
                     text='',
-                    fontsize=18,
+                    fontsize=28,
                     mouse_callbacks= {
                         'Button1':
                         lambda: qtile.cmd_spawn(os.path.expanduser('~/.config/rofi/powermenu.sh'))
@@ -173,6 +176,10 @@ screens = [
 
             ],
             30,  # height in px
-            background=colors[0]  # background color
-        ), ),
+            background=colors[0], # background color
+            opacity=0.8,
+            margin=[5, 5, 0, 5]
+
+        ), 
+    ),
 ]
