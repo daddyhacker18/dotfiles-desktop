@@ -1,20 +1,16 @@
-
+# /etc/fstab: static file system information.
 #
-# /etc/fstab
-# Created by anaconda on Mon Jan  2 12:28:14 2023
+# Use 'blkid' to print the universally unique identifier for a device; this may
+# be used with UUID= as a more robust way to name devices that works even if
+# disks are added and removed. See fstab(5).
 #
-# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
-# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
-#
-# After editing this file, run 'systemctl daemon-reload' to update systemd
-# units generated from this file.
-#
-UUID=11207718-6863-413d-b4c4-a31c602381d7 	/                       btrfs   subvol=root,compress=zstd:1 	0  0
-UUID=80c92245-097d-409b-8eeb-49efef2f4495 	/boot                   ext4    defaults        		1  2
-UUID=9EBE-2BAC          			/boot/efi               vfat    umask=0077,shortname=winnt 	0  2
-UUID=11207718-6863-413d-b4c4-a31c602381d7 	/home                   btrfs   subvol=home,compress=zstd:1 	0  0
-192.168.1.185:/volume1/Backup			/nas/backup		nfs	rw,noauto,user,nofail		0  0
-192.168.1.185:/volume1/Archive			/nas/archive		nfs	rw,noauto,user,nofail		0  0
-UUID=39B06632C7806339				/ntfs/tresorit		ntfs-3g	defaults		       	0  0
-UUID=34BA78A0BA786072				/ntfs/games	  	ntfs-3g	defaults		       	0  0
-192.168.1.185:/volume1/Downloads		/nas/downloads		nfs	rw,noauto,user,nofail		0  0	
+# <file system>                           <mount point>   <type>  <options>                   <dump>  <pass>
+UUID=EC14-50D5                            /efi            vfat    defaults,noatime            0 2
+UUID=6d0743ff-67f7-4889-ae97-7e0ee82a4a4d /               ext4    defaults,noatime            0 1
+UUID=a4abe576-5d42-4240-b1c1-2e5ce2b0a67f swap            swap    defaults                    0 0
+tmpfs                                     /tmp            tmpfs   defaults,noatime,mode=1777  0 0
+192.168.1.185:/volume1/Backup			        /nas/backup		  nfs	    rw,user,nofail		    0  0
+192.168.1.185:/volume1/Archive			      /nas/archive		nfs	    rw,user,nofail		    0  0
+UUID=39B06632C7806339				              /ntfs/tresorit	ntfs-3g	defaults		       	        0  0
+UUID=34BA78A0BA786072				              /ntfs/games	  	ntfs-3g	defaults		       	        0  0
+192.168.1.185:/volume1/Downloads		      /nas/downloads	nfs	    rw,user,nofail		    0  0
