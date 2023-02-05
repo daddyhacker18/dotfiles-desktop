@@ -1,9 +1,10 @@
 from libqtile import bar
 from .widgets import *
 from libqtile.config import Screen
-from modules.keys import terminal
+from .keys import terminal
 import os
 
+# define colors
 colors = [["#282c34", "#282c34"],
           ["#1c1f24", "#1c1f24"],
           ["#dfdfdf", "#dfdfdf"],
@@ -98,10 +99,11 @@ screens = [
                 ),
                 widget.CheckUpdates(
                     update_interval=1800,
+                    font="TerminessTTF Nerd Font Bold",
                     fontsize=18,
                     distro="Arch_yay",
                     display_format="{updates} Updates",
-                    foreground=colors[1],
+                    foreground=colors[11],
                     background=colors[0],
                     mouse_callbacks={
                         'Button1':
@@ -142,7 +144,7 @@ screens = [
                     background = colors[0],
                     font="TerminessTTF Nerd Font Bold",
                     fontsize=18,
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e glances')},
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('kitty -e glances')},
                     measure_mem = "G",
                     format = "{MemUsed:.1f}G/{MemTotal:.1f}G",
                     fmt ="mem: {}",
