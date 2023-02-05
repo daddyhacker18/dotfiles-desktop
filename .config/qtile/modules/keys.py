@@ -56,7 +56,7 @@ keys = [
     # system bindings
     Key([mod], "F10", lazy.spawn("xscreensaver-command -lock"), desc="Locks screen"),
     Key([mod], "F11", lazy.spawn("clipmenu"), desc="Show clipboard history"),
-    Key([mod, "shift"], "F10", lazy.spawn("rofi -show power-menu -modi power-menu:~/.config/rofi/scripts/rofi-power-menu"), desc="Suspends system"),
+    Key([mod, "shift"], "F10", lazy.spawn("sh /home/giles/.config/rofi/powermenu.sh"), desc="Suspends system"),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
