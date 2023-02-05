@@ -27,6 +27,7 @@ alias vim='lvim'																																				# neovim to replace vi
 alias yt-dlp-audio='yt-dlp -x --audio-format mp3'
 alias cryfs-open='cryfs /ntfs/tresorit/My\ Vault/CryFS ~/CryFS/'
 alias cryfs-close='cryfs-unmount "/home/giles/CryFS/"'
+alias cat='bat'                                                                         # bat to replace cat
 
 ### starship prompt
 starship init fish | source
