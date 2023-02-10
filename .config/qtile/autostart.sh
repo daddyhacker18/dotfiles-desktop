@@ -4,7 +4,7 @@
 ~/.screenlayout/main.sh
 
 # wallpapers and screensavers
-feh --bg-scale /home/giles/.config/qtile/wallpaper.jpg
+feh --bg-fill /home/giles/.config/qtile/wallpaper.jpg
 xscreensaver --no-splash & disown
 
 # system daemons
